@@ -4,9 +4,13 @@ plugins {
 	id 'java'
 }
 
+apply plugin: 'java'
+
 group = 'br.com.fiap'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
+compileJava.options.encoding = 'UTF-8'
+compileTestJava.options.encoding = "UTF-8"
 
 configurations {
 	developmentOnly
@@ -40,7 +44,15 @@ dependencies {
 	implementation group: 'com.amazonaws', name: 'aws-java-sdk-s3', version: '1.11.774'
 	
 	implementation group: 'org.projectlombok', name: 'lombok', version: '1.18.12'
+	annotationProcessor group: 'org.projectlombok', name: 'lombok', version: '1.18.12'
 	
+	jar {
+ 		destinationDir = file("$rootDir/build")
+	    from {
+	        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+	    }
+	    jar
+	}
 }
 
 dependencyManagement {

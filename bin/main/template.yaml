@@ -79,7 +79,7 @@ Resources:
         - AttributeName: urlRepository
           AttributeType: S
         - AttributeName: date
-          AttributeType: S # TIPO?
+          AttributeType: S
       KeySchema:
         - AttributeName: id
           KeyType: HASH
