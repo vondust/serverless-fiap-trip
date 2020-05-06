@@ -5,6 +5,7 @@ plugins {
 }
 
 apply plugin: 'java'
+apply plugin: 'eclipse'
 
 group = 'br.com.fiap'
 version = '0.0.1-SNAPSHOT'
@@ -46,6 +47,7 @@ dependencies {
 	implementation group: 'org.projectlombok', name: 'lombok', version: '1.18.12'
 	annotationProcessor group: 'org.projectlombok', name: 'lombok', version: '1.18.12'
 	
+	/*
 	jar {
  		destinationDir = file("$rootDir/build")
 	    from {
@@ -53,11 +55,19 @@ dependencies {
 	    }
 	    jar
 	}
+	*/
 }
 
 dependencyManagement {
 	imports {
 		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+	}
+}
+
+jar {
+	manifest {
+		attributes('Implementation-Title': project.name,
+                   'Implementation-Version': project.version)
 	}
 }
 
